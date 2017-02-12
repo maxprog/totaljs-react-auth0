@@ -1,0 +1,13 @@
+{
+  "name": "totaljs-react-auth0",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+     "path": "^0.12.7",
+    "total.js": "^2.4.0"
+  }
+}

@@ -1,0 +1,8 @@
+directory-public-virtual : /client/
+directory-public : /public/
+allow-compile-script : false
+allow-compile-html : false
+allow-compile-css : false
+allow-gzip : false
+REACT_APP_AUTH0_CLIENT_ID : 'odJmj8BCh8oHCKydUZ4kZ3OF88CBCqfU'
+REACT_APP_AUTH0_DOMAIN : 'jrbsystem.auth0.com'
