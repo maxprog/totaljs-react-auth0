@@ -14,7 +14,7 @@ npm install total.js
 npm install
   ```
 
-4. run webpack for React.js and Auth0. Bundled files will be copied to /public directory 
+4. run webpack for React.js and Auth0 in /client. Bundled files will be copied to /public directory 
 
   ```
   npm run webpack

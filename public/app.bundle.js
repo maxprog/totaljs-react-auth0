@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b695186bd3d4bf735724"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "774852dcd7980a67ece0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28956,7 +28956,7 @@
 	var LOGIN_ROUTE = '/login';
 	var ROOT_ROUTE = '/';
 	
-	var REACT_APP_AUTH0_CLIENT_ID = ("odJmj8BCh8oHCKydUZ4kZ3OF88CBCqfU");
+	var REACT_APP_AUTH0_CLIENT_ID = ("J2Yxx9kSZ4llxOtbMjpiAGGM2P30EdQE");
 	var REACT_APP_AUTH0_DOMAIN = ("jrbsystem.auth0.com");
 	
 	if (!REACT_APP_AUTH0_CLIENT_ID || !REACT_APP_AUTH0_DOMAIN) {
