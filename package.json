@@ -1,6 +1,6 @@
 {
   "name": "totaljs-react-auth0",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "start": "node server"
@@ -9,7 +9,7 @@
     "@types/jsonwebtoken": "^7.2.0",
     "dotenv": "^4.0.0",
     "jsonwebtoken": "^7.3.0",
+    "lodash": "^4.17.4",
     "path": "^0.12.7",
     "total.js": "^2.4.0"
   }
-}
