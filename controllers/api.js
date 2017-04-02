@@ -1,11 +1,14 @@
+var _ = require('lodash');
 exports.install = function() {
 
+	F.cors('/api/*', ['get', 'post', 'put', 'delete'], true); 
+
     // `F.onAuthorize` will be called for each of the following routes
-    F.route('/todos', getTodos, ['authorize']);
-    F.route('/todos/{id}', getTodo, ['authorize']);
-    F.route('/todos/{todo}', addTodo, ['authorize', 'post']);
-    F.route('/todos/{todo}', updateTodo, ['authorize', 'post', ]);
-    F.route('/todos/{id}', deleteTodo, ['authorize', 'delete']);
+    F.route('/api/todos', getTodos, ['authorize']);
+    F.route('/api/todos/{id}', getTodo, ['authorize']);
+    F.route('/api/todos', addTodo, ['authorize', 'post']);
+    F.route('/api/todos/{id}', updateTodo, ['authorize', 'put', ]);
+    F.route('/api/todos/{id}', deleteTodo, ['authorize', 'delete']);
 
     //Not protected 
     F.route('/list', getList);
@@ -22,48 +25,66 @@ exports.install = function() {
 };
 
 function getList() {
-    var self = this;
+    let self = this;
     self.json([1, 2, 3, 4, 5]);
 }
 
 
-var todoList = [{ 'id': 1, 'text': 'position 1' }, { 'id': 2, 'text': 'position 2' }, { 'id': 3, 'text': 'position 3' }];
+let todoList = [{ 'id': UID(), 'text': 'position 1',isCompleted:false }, { 'id': UID(), 'text': 'position 2',isCompleted:false }, { 'id': UID(), 'text': 'position 3',isCompleted:false }];
 
 function getTodos() {
-    var self = this;
+    let self = this;
+  //  console.log('getTodos ',todoList);
     self.json(todoList);
 }
 
 function getTodo(id) {
-    var self = this;
-    var todo = {};
-    var found = false;
-    var i = 0;
-    while (i < todoList.length && !found) {
-        if (!found && todoList[i].id == id) todo = todoList[i];
-        i++;
-    }
-    self.json(todo);
+    let self = this;
+    let todo =  _.find(todoList,{id:id});
+    
+        self.json(todo);
 }
 
-function addTodo(todo) {
+function addTodo() {
     var self = this;
+    var todo = self.body;
+     console.log(todo);
+    todo.id=UID();
     todoList.push(todo);
-    self.json({ 'operation': 'addTodo', 'result': 'OK' });
+  //  console.log(todoList);
+     self.json({ 'operation': 'updateTodo', 'result': 'OK', data:todo });
 }
 
 function updateTodo(todo) {
     var self = this;
-    self.json({ 'operation': 'updateTodo', 'result': 'OK' });
+     var todo = self.body;
+   //  console.log(todo);
+      var match = _.find(todoList, {id:todo.id});
+   
+    if(match){
+        var index = _.indexOf(todoList, _.find(todoList, {id:todo.id}));
+        todoList.splice(index, 1, todo);
+    } 
+ console.log(todoList);
+    self.json({ 'operation': 'updateTodo', 'result': 'OK',data:todo });
 }
 
 function deleteTodo(id) {
     var self = this;
-    todoList.splice(id, 1);
+  //   console.log('delete id=',id); 
+     var match = _.find(todoList, {id:id});
+ //    console.log('match=',match); 
+    if(match){
+        var index = _.indexOf(todoList, _.find(todoList, {id:id}));
+ //       console.log('index=',index); 
+        todoList.splice(index, 1);
+        
+    } 
+ //  console.log(todoList); 
     self.json({ 'operation': 'deleteTodo', 'result': 'OK' });
 }
 
 function custom() {
     var self = this;
-    self.json({ 'error': '401:Unauthorized' });
+    self.json({ 'error': '401', 'message':'Unauthorized' });
 }
